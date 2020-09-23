@@ -31,12 +31,12 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Speed", Mathf.Abs(hIn * speed * Time.deltaTime));
         //}
         Vector3 localScale = transform.localScale;
-        if(hIn == 1 && !(transform.localScale.x > 0)) {
+        if(hIn > 0 && !(transform.localScale.x > 0)) {
             localScale.x *= -1;
             transform.localScale = localScale;
             //Debug.Log("Facing Right");
         }
-        if(hIn == -1 && !(transform.localScale.x < 0)) {
+        if(hIn < 0 && !(transform.localScale.x < 0)) {
             //Debug.Log("Facing Left");
             localScale.x *= -1;
             transform.localScale = localScale;
@@ -44,7 +44,6 @@ public class PlayerController : MonoBehaviour
 
         if(IsGrounded() && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))) {
             rb.velocity = Vector2.up * jumpVelo;
-            //animator.SetBool("IsJumping", true);
         }
 
         if(IsGrounded() && Input.GetKeyDown(KeyCode.DownArrow)) {
